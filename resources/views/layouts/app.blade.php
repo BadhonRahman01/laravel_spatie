@@ -52,7 +52,17 @@
                         <li><a class="nav-link" href="{{ route('users.index') }}">Manage Users</a></li>
 
                         <li><a class="nav-link" href="{{ route('roles.index') }}">Manage Role</a></li>
+                        {{-- All working --}}
+                        @role('Admin')
+                        <li><a class="nav-link" href="{{ route('roles.index') }}">Admin</a></li>
+                        @endrole
 
+                        @if(auth()->user()->can('role-create'))
+                        <li><a class="nav-link" href="{{ route('roles.index') }}">Role Create</a></li>
+                        @endif
+                        @can('role-create')
+                        <li><a class="nav-link" href="{{ route('roles.index') }}">Role Create</a></li>
+                        @endcan
                         <li><a class="nav-link" href="{{ route('products.index') }}">Manage Product</a></li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
